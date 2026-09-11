@@ -29,4 +29,16 @@ public with sharing class AccountService {
         acc.Name = newName;
         update acc;
     }
+    public static void updateAccountEmail(Id accId, String newEmail) {
+        Account acc = [
+            SELECT Id, PersonEmail
+            FROM Account
+            WHERE Id = :accId
+            WITH USER_MODE
+            LIMIT 1
+        ];
+    
+        acc.PersonEmail = newEmail;
+        update acc;
+    }
 }
