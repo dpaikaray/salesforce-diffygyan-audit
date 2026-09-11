@@ -17,4 +17,16 @@ public with sharing class AccountService {
 
         update acc;
     }
+    public static void updateAccountName(Id accId, String newName) {
+        Account acc = [
+            SELECT Id, Name
+            FROM Account
+            WHERE Id = :accId
+            WITH USER_MODE
+            LIMIT 1
+        ];
+    
+        acc.Name = newName;
+        update acc;
+    }
 }
